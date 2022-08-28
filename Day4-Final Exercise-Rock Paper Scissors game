@@ -28,26 +28,17 @@ scissors = '''
 
 import random
 
+images = [rock, paper, scissors]
 user = int(input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors. \n"))
-if user == 0:
-  print(rock)
-elif user == 1:
-  print(paper)
-elif  user == 2:
-  print(scissors)
-
-
-
 computer = random.randint(0, 2)
-print("Computer choose:")
-if user < 0 and user >= 3:
+
+
+if user < 0 or user >= 3:
   print("Invalid input.")
-elif computer == 0:
-  print(rock)
-elif computer == 1:
-  print(paper)
 else:
-  print(scissors)
+  print(images[user])
+  print("Computer choose:")
+  print(images[computer])
 
 if user == computer:
   print("Draw.")
