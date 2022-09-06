@@ -1,0 +1,62 @@
+from art import logo
+import random
+
+print(logo)
+
+print("Welcome to the number guessing game!")
+
+random_number = random.randint(1, 100)
+print("I am thinking of a number between 1 and 100.")
+
+difficulty = input("Choose a difficulty 'easy' or 'hard'. ")
+
+def easy_mode():
+    attempts = 10
+    global random_number
+    while attempts != 0:
+        print(f"You have {attempts} attempts remaining to guess the number. ")
+        guessed_number = int(input("Make a guess: "))
+        
+        if guessed_number > random_number:
+            attempts -= 1
+            if attempts == 0:
+                print(f"You've run out of guesses, you lose. The correct answer was {random_number}.")
+            else:
+                print("Too high.")
+        elif guessed_number < random_number:
+            attempts -= 1
+            if attempts == 0:
+                print(f"You've run out of guesses, you lose. The correct answer was {random_number}.")
+            else:
+                print("Too low.")
+        elif guessed_number == random_number:
+            attempts = 0
+            print(f"You got it! The answer was {random_number}.")
+
+def hard_mode():
+    attempts = 5
+    global random_number
+    while attempts != 0:
+        print(f"You have {attempts} attempts remaining to guess the number. ")
+        guessed_number = int(input("Make a guess: "))
+        
+        if guessed_number > random_number:
+            attempts -= 1
+            if attempts == 0:
+                print(f"You've run out of guesses, you lose. The correct answer was {random_number}.")
+            else:
+                print("Too high.")
+        elif guessed_number < random_number:
+            attempts -= 1
+            if attempts == 0:
+                print(f"You've run out of guesses, you lose. The correct answer was {random_number}.")
+            else:
+                print("Too low.")
+        elif guessed_number == random_number:
+            attempts = 0
+            print(f"You got it! The answer was {random_number}.")
+
+if difficulty == "easy":
+    easy_mode()
+elif difficulty == "hard":
+    hard_mode()
