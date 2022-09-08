@@ -1,0 +1,70 @@
+# Import needed data
+import random
+from replit import clear
+from art import logo
+from art import vs
+from game_data import data
+
+# Create a function to generate random data entry from list
+def generate_random_data_entry():
+    data_entry = random.choice(data)
+    name = data_entry['name']
+    description = data_entry['description']
+    country = data_entry['country']
+    follower_count = data_entry['follower_count']
+    return follower_count, name, description, country
+
+# Create second comparison
+def compare_B():
+    compare_B = generate_random_data_entry()
+    print(f"Compare B: {compare_B[1]}, a {compare_B[2]}, from {compare_B[3]}.")
+    number_of_followers_B = compare_B[0]
+    return compare_B, number_of_followers_B
+    
+# Check which account has more followers
+def check_followers(number_of_followers_B):
+    if number_of_followers_A > number_of_followers_B:
+        answer = "A"
+    elif number_of_followers_A < number_of_followers_B:
+        answer = "B"
+    return answer
+    
+
+
+
+print(logo)
+
+compare_A = generate_random_data_entry()
+
+score = 0
+is_game_finished = False
+
+while not is_game_finished:
+    print(f"Compare A: {compare_A[1]}, a {compare_A[2]}, from {compare_A[3]}.")
+    number_of_followers_A = compare_A[0]
+    print(vs)
+
+    #varables with '_' before name are usually for local vars needed for displaying something from function, in this case getting entire function to be assigned to variable (and both of its outputs), so both outputs can bee called separately later in the code
+    _compare_B = compare_B() 
+    
+    # If newly generated data entry is equal to previous one, genereate new one again
+    if compare_A == _compare_B[0]:
+        _compare_B = compare_B()
+    
+    answer = check_followers(_compare_B[1])
+    
+    # Ask for user guess
+    user_guess = input(f"Who has more follower? Type 'A' or 'B': ")
+    
+    # Check if user was right
+    if user_guess == answer:
+        clear()
+        print(logo)
+        compare_A = _compare_B[0]
+        score += 1
+        print(f"You are right! Current score: {score}. ")
+    else:
+        clear()
+        print(logo)
+        print(f"You are wrong! Final score: {score}. ")
+        is_game_finished = True
